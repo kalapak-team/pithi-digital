@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body), var(--font-kantumruy), sans-serif;
+  --font-serif: var(--font-heading), var(--font-kantumruy), serif;
+  --font-khmer: var(--font-kantumruy), sans-serif;
+  --color-ink: #1a1608;
+  --color-body: #5c5340;
+  --color-brand: #ffd700;
+  --color-brand-soft: #ffe566;
+  --color-brand-dark: #9a7b00;
+  --color-deep: #2a2410;
+  --color-page: #faf7ef;
+  --color-white: #ffffff;
+  --color-line: #e8dfc0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  background: var(--color-page);
+  color: var(--color-body);
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-weight: 200;
+}
+
+::selection {
+  background: #ffd700;
+  color: #1a1608;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration, 40s) linear infinite;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 40s) linear infinite;
 }
