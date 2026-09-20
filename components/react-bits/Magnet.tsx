@@ -7,19 +7,25 @@ interface MagnetProps extends HTMLAttributes<HTMLDivElement> {
   padding?: number;
   disabled?: boolean;
   magnetStrength?: number;
+  maxOffset?: number;
   activeTransition?: string;
   inactiveTransition?: string;
   wrapperClassName?: string;
   innerClassName?: string;
 }
 
+function clamp(value: number, max: number) {
+  return Math.max(-max, Math.min(max, value));
+}
+
 const Magnet: React.FC<MagnetProps> = ({
   children,
-  padding = 100,
+  padding = 10,
   disabled = false,
-  magnetStrength = 2,
-  activeTransition = "transform 0.3s ease-out",
-  inactiveTransition = "transform 0.5s ease-in-out",
+  magnetStrength = 12,
+  maxOffset = 5,
+  activeTransition = "transform 0.25s ease-out",
+  inactiveTransition = "transform 0.4s ease-out",
   wrapperClassName = "",
   innerClassName = "",
   ...props
@@ -44,8 +50,8 @@ const Magnet: React.FC<MagnetProps> = ({
       if (distX < width / 2 + padding && distY < height / 2 + padding) {
         setIsActive(true);
         setPosition({
-          x: (e.clientX - centerX) / magnetStrength,
-          y: (e.clientY - centerY) / magnetStrength,
+          x: clamp((e.clientX - centerX) / magnetStrength, maxOffset),
+          y: clamp((e.clientY - centerY) / magnetStrength, maxOffset),
         });
       } else {
         setIsActive(false);
@@ -55,7 +61,7 @@ const Magnet: React.FC<MagnetProps> = ({
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [padding, disabled, magnetStrength]);
+  }, [padding, disabled, magnetStrength, maxOffset]);
 
   const x = disabled ? 0 : position.x;
   const y = disabled ? 0 : position.y;

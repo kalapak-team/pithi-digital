@@ -191,11 +191,7 @@ function NavbarBar({ pathname }: { pathname: string }) {
           </div>
 
           <div className="flex items-center gap-2">
-            <Magnet
-              padding={28}
-              magnetStrength={3}
-              wrapperClassName="hidden lg:inline-block"
-            >
+            <Magnet wrapperClassName="hidden lg:inline-block">
               <Link
                 href="/plan"
                 className="inline-flex rounded-full bg-brand px-5 py-3 text-[0.95rem] font-normal whitespace-nowrap text-ink transition-colors duration-300 hover:bg-white xl:px-6"

@@ -41,7 +41,7 @@ export default function Hero() {
             direction="bottom"
             className="text-base font-normal leading-normal text-white lg:text-[1.05rem]"
           />
-          <Magnet padding={40} magnetStrength={3} wrapperClassName="mt-6 inline-block">
+          <Magnet wrapperClassName="mt-6 inline-block">
             <Link
               href="/plan"
               className="inline-flex rounded-full bg-brand px-9 py-3 text-base font-normal text-ink transition-colors duration-300 hover:bg-white"

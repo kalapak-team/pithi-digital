@@ -475,7 +475,7 @@ export default function HomeSections() {
               </h2>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Magnet padding={36} magnetStrength={2.5}>
+              <Magnet>
                 <Link
                   href="/plan"
                   className="inline-flex rounded-full bg-brand px-8 py-3 text-ink transition-colors hover:bg-white"
